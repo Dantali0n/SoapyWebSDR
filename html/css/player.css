@@ -1,0 +1,171 @@
+body {
+  font-family: Helvetica, Arial, Geneva, sans-serif;
+}
+
+.leftside
+{
+    width: 620px;
+    background-color: #f0f0f0;
+}
+
+.rl_space
+{
+    width: 10px;
+    background-color: #ffffff;
+}
+
+.midside
+{
+    width: 560px;
+    background-color: #f0f0f0;
+}
+
+.rightside
+{
+    width: 300px;
+    background-color: #f0f0f0;
+}
+
+.rightrow
+{
+    font-size:20px;
+    font-weight: 500;
+    width: 570px;
+    display: flex;
+}
+
+.rightrow_space
+{
+    width: 570px;
+    height: 10px;
+}
+
+.rightcell_label
+{
+    width: 100px;
+}
+
+.rightcell_label_header
+{
+    width: 100px;
+    font-weight: 600;
+}
+
+.rightcell_slider
+{
+    width: 185px;
+}
+
+.controls
+{
+    width: 1500px;
+    display: flex;
+    background-color: #e0e0e0;
+}
+
+.controls_left
+{
+    width: 630px;
+    display: flex;
+}
+
+.controls_left_left
+{
+    font-size:16px;
+    width: 150px;
+    color: blue;
+    font-weight: 600;
+}
+
+.controls_left_mid
+{
+    font-size:16px;
+    width: 200px;
+    color: blue;
+    font-weight: 600;
+}
+
+.controls_left_right
+{
+    font-size:14px;
+    width: 280px;
+    color: blue;
+    font-weight: 600;
+}
+
+.header_mytitle
+{
+    font-size:30px;
+    color: white;
+    background-color:#808080;
+    width: 1500px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.header_subtitle
+{
+    font-size:20px;
+    color: white;
+    background-color:#808080;
+    width: 1500px;
+    text-align: center;
+}
+
+.tuneinfo
+{
+    font: "Arial";
+    font-size:26px;
+    font-weight: 600;
+    color: blue;
+    width: 1500px;
+    text-align: center;
+}
+
+.selectbox {
+    width: 120px;
+    padding:6px;
+    margin-top: 6px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    background: #e8e8e8;
+    color:#404040;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mybutton {
+    width:99px;
+    padding: 1px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    background: #c8c8e8;
+    color:#404040;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.qrg {
+width:100px;
+}
+
+canvas {
+    display:block;
+    margin: -2px;
+}

@@ -44,8 +44,6 @@
 #include "antialiasing.h"
 #include "timing.h"
 
-void beaconLock(double val, int pos);
-
 #define FSSB_SRATE          600000
 #define FSSB_RESOLUTION     10
 #define FSSB_FFT_LENGTH     (FSSB_SRATE / FSSB_RESOLUTION)  // = 60.000
@@ -111,7 +109,6 @@ void fssb_sample_processing(short *xi, short *xq, int numSamples)
                     real = cpout[wfbins+bin10][0];
                     imag = cpout[wfbins+bin10][1];
                     double v = sqrt((real * real) + (imag * imag));
-                    beaconLock(v,wfbins+bin10);
                     if(v > wfsamp[idx]) wfsamp[idx] = v;
                     // correct level TODO ???
                     //wfsamp[idx] /= 50;
@@ -200,127 +197,6 @@ void fssb_sample_processing(short *xi, short *xq, int numSamples)
             fir_filter_i_ssb_inc(xi[i]);
             fir_filter_q_ssb_inc(xq[i]);
         }
-    }
-}
-
-#define CHECKPOS 3
-void beaconLock(double val, int pos)
-{
-    if(autosync == 0) return;
-    
-    
-static double max = -9999999999;
-static int lastts = 0;
-static int maxpos;
-static int bigstepdet = 0;
-static int lastmaxpos = 0;
-static int lastpos[CHECKPOS];
-    // the CW beacon is 25kHz above the left edge
-    // this is at bin 2500
-    
-    // between bin 1500 and 3500 measure the maximum
-    // this give a lock range of 20 kHz
-    if(pos >= 1500 && pos <= 3500)
-    {
-        // measure the peak value for 1s
-        if(fabs(val) > max)
-        {
-            max = fabs(val);
-            maxpos = pos;
-        }
-    }
-    
-    struct timeval  tv;
-    gettimeofday(&tv, NULL);  
-    
-    int ts = (tv.tv_sec % 60) * 10 + (tv.tv_usec / 100000);
-
-    if((ts % 2)==0 && (lastts != ts))
-    {
-        lastts = ts;
-        max = -9999999999;
-        
-        // insert actual position into array
-        for(int i=(CHECKPOS-1); i>0; i--)
-        {
-            lastpos[i] = lastpos[i-1];
-        }
-        lastpos[0] = maxpos;
-        
-        // check if all pos ar identical
-        for(int i=1; i<CHECKPOS; i++)
-        {
-            if(lastpos[i] != lastpos[0])
-                return;
-        }
-
-        if(maxpos == 0) return;
-        
-        if(lastmaxpos != 0 && abs(lastmaxpos-maxpos) > 300 && bigstepdet < 4) 
-        {
-            printf("step too large: %d\n",maxpos);
-            bigstepdet++;
-            return;
-        }
-        bigstepdet = 0;
-        
-        //printf("%d\n",maxpos);
-        
-        // correction step
-        int cneg = 0, cpos = 0;
-        int mini = 2495, maxi=2505;
-        if(hwtype == 1)
-        {
-            // SDRPLAY
-            cpos = (2500-maxpos);
-            cneg = (maxpos-2500);
-        }
-        
-        if(hwtype == 2)
-        {
-            // RTL-sdr
-            cpos = (2500-maxpos);
-            cneg = (maxpos-2500);
-            mini = 2477;
-            maxi = 2523;
-        }
-        
-        if(maxpos > 2650 || maxpos < 2350)
-        {
-            cpos *= 5;
-            cneg *= 5;
-        }
-        else if(maxpos > 2600 || maxpos < 2400)
-        {
-            cpos *= 3;
-            cneg *= 3;
-        }
-        else if(maxpos > 2550 || maxpos < 2450)
-        {
-            cpos *= 2;
-            cneg *= 2;
-        }
-        
-        // we had 2x the same value
-        if(maxpos > maxi)
-        {
-            printf("Auto-tuning pos:%d, corr:%d\n",maxpos,cneg);
-            newrf -= cneg;
-            setrfoffset = 1;
-            rflock = 0;
-        }
-        else if(maxpos < mini)
-        {
-            printf("Auto-tuning pos:%d, corr:%d\n",maxpos,cpos);
-            newrf += cpos;
-            setrfoffset = 1;
-            rflock = 0;
-        }
-        else
-        {
-            rflock = 1;
-        }
-        lastmaxpos = maxpos;
     }
 }
 

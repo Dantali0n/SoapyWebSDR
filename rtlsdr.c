@@ -112,6 +112,10 @@ int init_rtlsdr()
     return 1;
 }
 
+/**
+ * set rtl_sdr to specified frequency
+ * @param hz requested frequency in hertz
+ */
 void rtlsetTunedQrgOffset(unsigned int hz)
 {
     unsigned int qrg = TUNED_FREQUENCY - hz;

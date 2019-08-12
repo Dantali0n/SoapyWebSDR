@@ -42,7 +42,7 @@ int ssbmode = 1;    // 0=LSB 1=USB
 int filtermode = 1; // 0=1,8k 1=2,4k 2=3,6k
 int setrfoffset = 0;
 unsigned int newrf = 0;
-int autosync = 0;
+//int autosync = 0;
 
 
 // called in the main loop
@@ -70,22 +70,22 @@ unsigned int frdiff;
                 printf("set filter: %d\n",filtermode);
                 break;
                 
-        case 6: frdiff = freqval;
-                if(frdiff == 1) newrf-=100;
-                else newrf+=100;
-                printf("set tuner qrg: %d\n",frdiff);
-                setrfoffset = 1;
-                break;
+//        case 6: frdiff = freqval;
+//                if(frdiff == 1) newrf-=100;
+//                else newrf+=100;
+//                printf("set tuner qrg: %d\n",frdiff);
+//                setrfoffset = 1;
+//                break;
                 
-        case 7: autosync = freqval;
-                printf("auto beacon lock: %d\n",autosync);
-                break; 
+//        case 7: autosync = freqval;
+//                printf("auto beacon lock: %d\n",autosync);
+//                break;
                 
-        case 8: newrf = TUNED_FREQUENCY - freqval;
-                printf("set tuner qrg: %d (%d)\n",newrf,TUNED_FREQUENCY - newrf);
-                setrfoffset = 1;
-                break;
-                
+//        case 8: newrf = TUNED_FREQUENCY - freqval;
+//                printf("set tuner qrg: %d (%d)\n",newrf,TUNED_FREQUENCY - newrf);
+//                setrfoffset = 1;
+//                break;
+//
         case 9: // mouse click lower WF 0..1500
                 // actual qrg is in the middle at pos=750
                 // resolution: 15kHz (10 Hz/pixel)
@@ -93,14 +93,14 @@ unsigned int frdiff;
                 printf("new QRG offset: %d\n",foffset);
                 downmixer_setFrequency(foffset);
                 break;
-                
-        case 10:// activate icom CAT interface (open/close serial port)
-                useCAT = freqval;
-                break;
 
-        case 11:// set TRX via CAT if WF clicked
-                setIcomFrequency = freqval;
-                break;
+//        case 10:// activate icom CAT interface (open/close serial port)
+//                useCAT = freqval;
+//                break;
+//
+//        case 11:// set TRX via CAT if WF clicked
+//                setIcomFrequency = freqval;
+//                break;
 
     }
     setfreq = 0;
