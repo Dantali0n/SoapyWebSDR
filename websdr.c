@@ -179,26 +179,26 @@ void installHTMLfiles()
 {
     // the HTML files are located in the html folder below the es folder
     // copy these files into the Apache HTML folder
-    int i;
-    if ((i=getuid()))
-    {
-        printf("\nYou are not root, HTML files are not automatically copied into the Apache folder!\n");
-        return;
-    }
-    
-    char fn[512];
-    snprintf(fn,sizeof(fn),"cp ./html/* %s",htmldir);
-    printf("copy Web Site files to: %s",htmldir);
-    FILE *fp = popen(fn,"r");
-    if(fp)
-    {
-        // Liest die Ausgabe von cp
-        while (fgets(fn, sizeof(fn)-1, fp) != NULL) 
-        {
-            //printf("Output: %s\n",fn);
-        }
-        pclose(fp);
-    }
+//    int i;
+//    if ((i=getuid()))
+//    {
+//        printf("\nYou are not root, HTML files are not automatically copied into the Apache folder!\n");
+//        return;
+//    }
+//
+//    char fn[512];
+//    snprintf(fn,sizeof(fn),"cp ./html/* %s",htmldir);
+//    printf("copy Web Site files to: %s",htmldir);
+//    FILE *fp = popen(fn,"r");
+//    if(fp)
+//    {
+//        // Liest die Ausgabe von cp
+//        while (fgets(fn, sizeof(fn)-1, fp) != NULL)
+//        {
+//            //printf("Output: %s\n",fn);
+//        }
+//        pclose(fp);
+//    }
 }
 
 void usage()
@@ -241,10 +241,10 @@ int c;
     isRunning();
     
     // look for the apache HTML path
-    searchHTMLpath();
+    // searchHTMLpath();
     
     // Install or Update the html files
-    installHTMLfiles();
+    // installHTMLfiles();
     
     // make signal handler, mainly use if the user presses Ctrl-C
     struct sigaction sigact;

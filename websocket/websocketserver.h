@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <stdint.h>
-#include "../qo100websdr.h"
+#include "../websdr.h"
 
 #define MESSAGE_LENGTH 30000
 #define MAX_CLIENTS    20

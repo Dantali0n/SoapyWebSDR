@@ -35,7 +35,7 @@
 #include <sys/time.h>
 #include "fifo.h"
 #include "audio.h"
-#include "qo100websdr.h"
+#include "websdr.h"
 
 void *audioproc(void *pdata);
 void expand_stereo(short *samples, int len);

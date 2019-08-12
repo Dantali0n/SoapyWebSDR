@@ -818,7 +818,7 @@ var coltab = [
             var wfcolor = "red";
             var linethickness = 1;
             var next_linethickness = 1;
-            var sockurl = '?';
+            var sockurl = '127.0.0.1';
             
             function draw_tune()
             {
@@ -1534,9 +1534,9 @@ var coltab = [
                 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
                 // get socket URL fromactual browser-URL
-                var x = location.href;
-                var a = x.split("/");
-                var y = "?";
+                /* var x = location.href;
+                vr a = x.split("/");
+                var y = "127.0.0.1";
                 for(var i=0; i<a.length; i++)
                 {
                     if(a[i].length > 6)
@@ -1545,9 +1545,10 @@ var coltab = [
                         break;
                     }
                 }
-                var ya = y.split(":");
-                sockurl = "ws://" + ya[0] + ":8090";
-                //console.log(sockurl);
+                // var ya = y.split(":");
+		*/
+                sockurl = "ws://" + sockurl + ":8090";
+                console.log(sockurl);
                 //$('#myinfo').html(sockurl);
                 websocket = new WebSocket(sockurl);
                 websocket.binaryType = "arraybuffer";

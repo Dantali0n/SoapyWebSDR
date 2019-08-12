@@ -36,7 +36,7 @@
 #include <sys/time.h>
 #include "fifo.h"
 #include "wf_univ.h"
-#include "qo100websdr.h"
+#include "websdr.h"
 #include "setqrg.h"
 #include "audio_bandpass.h"
 #include "downmixer.h"
