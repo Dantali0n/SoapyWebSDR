@@ -300,7 +300,7 @@ void ser_loop()
                     if(setIcomFrequency && civ_freq != 0)
                     {
                         // GUI sends frequency
-			printf("civ_freq:%d\n",civ_freq);
+			            printf("civ_freq:%d\n",civ_freq);
                         ser_command = 0;
                         civ_confirm = 0;
                         civ_selMainSub(1);

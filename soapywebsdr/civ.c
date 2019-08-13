@@ -146,7 +146,7 @@ void civ_queryQRG()
 {
     readingSubBand = 0;
     
-    unsigned char tx[6] = {0xfe, 0xfe, 0x00, 0xe0,    0x03, 0xfd};
+    unsigned char tx[6] = {0xfe, 0xfe, 0x00, 0xe0, 0x03, 0xfd};
     tx[2] = civ_adr;
     write_port(tx, 6);
 }

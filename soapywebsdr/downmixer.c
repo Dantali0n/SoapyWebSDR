@@ -105,8 +105,8 @@ void downmixer_setFrequency(int fr)
     printf("set mixer qrg: %d\n",fr);
     
     // set in TRX via CAT
-    trx_frequency = fr + TUNED_FREQUENCY;
-    ser_command = 2;
+//    trx_frequency = fr + TUNED_FREQUENCY;
+//    ser_command = 2;
     
     fcw = (unsigned int)((double)fr * pow(2,32) / (double)samplerate);
 }

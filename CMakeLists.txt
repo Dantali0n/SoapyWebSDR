@@ -14,6 +14,7 @@ include(macros)
 use_cxx11()
 
 # Enable pedantic errors and warnings for c++
+#use_c_warning_pedantic()
 use_cxx_warning_pedantic()
 
 # Configurable options and defaults
@@ -31,6 +32,8 @@ find_package(m REQUIRED)
 find_package(gd REQUIRED)
 find_package(sndfile REQUIRED)
 find_package(asound REQUIRED)
+find_package(rtlsdr REQUIRED)
+find_package(mirsdrapirsp REQUIRED)
 find_package(SoapySDR "0.4.0" NO_MODULE REQUIRED)
 
 # Include Commonly required headers
@@ -40,6 +43,8 @@ include_directories(${M_INCLUDES})
 include_directories(${GD_INCLUDES})
 include_directories(${SNDFILE_INCLUDES})
 include_directories(${ASOUND_INCLUDES})
+include_directories(${RTLSDR_INCLUDES})
+include_directories(${MIRSDRAPIRSP_INCLUDES})
 
 # Set Commonly required libraries
 set(SoapyWebSDR_LIBRARIES
@@ -50,11 +55,8 @@ set(SoapyWebSDR_LIBRARIES
         ${SNDFILE_LIBRARIES}
         ${ASOUND_LIBRARIES}
         ${GD_LIBRARIES}
-        z
-        jpeg
-        freetype
-        rtlsdr
-        mirsdrapi-rsp
+        ${RTLSDR_LIBRARIES}
+        ${MIRSDRAPIRSP_LIBRARIES}
 )
 
 # CodeCoverage generation will force enable debug and tests
