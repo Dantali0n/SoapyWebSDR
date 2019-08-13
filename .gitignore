@@ -2,3 +2,5 @@
 .idea
 cmake-build-debug
 websdr
+docs
+fssb_wisdom
